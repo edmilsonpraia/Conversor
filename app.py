@@ -1,22 +1,27 @@
 import streamlit as st
 import pandas as pd
-try:
-    import lasio
-except Exception as e:
-    st.error("Erro ao importar lasio. Por favor, contate o administrador.")
-    st.stop()
+import numpy as np
 import io
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-def get_depth_column(df):
-    """Identifica a coluna de profundidade no DataFrame."""
-    depth_aliases = ['DEPTH', 'DEPT', 'MD', 'TVD', 'DEPTHM', 'DEPTH_M', 'DEPTH_FT']
-    
-    for alias in depth_aliases:
-        if alias in df.columns:
-            return alias
-    return df.columns[0]
+# Import lasio with detailed error handling
+try:
+    import lasio
+except ImportError as e:
+    st.error(f"""
+        Erro ao importar lasio. 
+        Detalhes do erro: {str(e)}
+        Verifique se todas as dependências estão instaladas corretamente.
+    """)
+    st.stop()
+except Exception as e:
+    st.error(f"""
+        Erro inesperado ao importar lasio.
+        Detalhes do erro: {str(e)}
+        Por favor, contate o administrador.
+    """)
+    st.stop()
 
 def plot_basic_logs(df, depth_col):
     """Cria um plot básico dos perfis."""
