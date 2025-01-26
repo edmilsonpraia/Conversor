@@ -5,6 +5,27 @@ import io
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
+# Adicionar a função get_depth_column que estava faltando
+def get_depth_column(df):
+    """
+    Identifica a coluna de profundidade no DataFrame.
+    Procura por nomes comuns de colunas de profundidade.
+    """
+    depth_columns = ['DEPTH', 'MD', 'TVD', 'DEPT', 'PROFUNDIDADE', 'PROF']
+    
+    # Primeiro, procura correspondência exata
+    for col in depth_columns:
+        if col in df.columns:
+            return col
+    
+    # Se não encontrar, procura por correspondência parcial
+    for col in df.columns:
+        if any(depth_name.lower() in col.lower() for depth_name in depth_columns):
+            return col
+    
+    # Se ainda não encontrou, usa a primeira coluna
+    return df.columns[0]
+
 # Import lasio with detailed error handling
 try:
     import lasio
