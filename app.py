@@ -216,7 +216,7 @@ def main():
     # Título principal com ícone
     st.markdown("""
         <h1 style='text-align: center; color: #2C3E50; margin-bottom: 2rem;'>
-            🎯 Well Log Converter
+            🎯 Well Log Converter Pro_Ed
         </h1>
     """, unsafe_allow_html=True)
     
@@ -285,7 +285,7 @@ def main():
         else:  # CSV para LAS
             st.markdown("""
                 <div class='info-box'>
-                    <h3>📤 Upload do Arquivo CSV</h3>
+                    <h3>📤 ustificações Acadêmicas</h3>
                 </div>
             """, unsafe_allow_html=True)
             
