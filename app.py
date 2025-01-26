@@ -1,6 +1,10 @@
 import streamlit as st
 import pandas as pd
-import lasio
+try:
+    import lasio
+except Exception as e:
+    st.error("Erro ao importar lasio. Por favor, contate o administrador.")
+    st.stop()
 import io
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
